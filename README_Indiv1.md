@@ -32,12 +32,44 @@ Essa etapa foi amplamente discutida e ilustrada com as imagens dos modelos traba
 
 ### * 2: Registro no Banco de Dados ###
 
-```python
-print("Por favor, informe agora os critérios mínimos desejados do(s) candidato(s):")
-e2 = int(input("Entrevista:"))
-t2 = int(input("Teste Teórico:"))
-p2 = int(input("Teste Prático:"))
-s2 = int(input("Soft Skills:"))
+Na codificação dos modelos anteriores, foram concebidos de forma fictícia dois ou mais registros para cada entidade existente afim de se checar o preenchimento das informações. Essa etapa do projeto foi trabalhada no SQL Online IDE (https://sqliteonline.com/)  por PostgreSQL, conforme mostrado abaixo:
+
+```sql
+CREATE TABLE CADASTRO_EMPRESA (
+  CNPJ INTEGER PRIMARY KEY,
+  Nome VARCHAR(255),
+  Telefone INTEGER,
+  Endereco VARCHAR(255),
+  ID_Cad_Tec INTEGER,
+  FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_EMPRESA(CNPJ)
+);
+ 
+CREATE TABLE CADASTRO_TECNOLOGIA(
+  ID_Cad_Tec INTEGER primary KEY,
+  Nome VARCHAR(255),
+  Area VARCHAR(255),
+  CNPJ INTEGER,
+  FOREIGN Key (CNPJ) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
+);
+ 
+CREATE TABLE CADASTRO_EMP_TEC(
+  CNPJ INTEGER,
+  ID_Cad_Tec INTEGER,
+  CONSTRAINT pk_EMP_TEC PRIMARY KEY (CNPJ, ID_Cad_Tec),
+  CONSTRAINT fk_CNPJ FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ),
+  CONSTRAINT fk_ID_Cad_Tec FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
+);
+
+CREATE TABLE CURSOS(
+  ID_Curso INTEGER PRIMARY KEY,
+  Nome VARCHAR(255),
+  CargaHoraria INTEGER,
+  Palestrante VARCHAR(255),
+  Turno VARCHAR(255),
+  Stack VARCHAR(255),
+  CNPJ INTEGER,
+  FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ) 
+);
 ```
 
 <sub>***Nota: supõe-se nesse modelo do projeto que todas as notas trabalhadas serão números inteiros. É possível trabalhar com números decimais, se for necessário; basta colocar 'float(input())' em substituição.***</sub>
