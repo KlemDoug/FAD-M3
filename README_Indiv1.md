@@ -108,7 +108,7 @@ SELECT * FROM cursos
 --finalização dos registros e testes de preenchimento de dados--
 ```
 
-<sub>***Cada entidade foi codificada pelo comando CREATE, gerando uma tabela que recebe seus campos e respectivos tipos (ex. 'Area VARCHAR(255)'). Ao final do código, registraram-se as informações pelo comando INSERT INTO para cada um das entidades. As amostras dos dados no terminal da plataforma pelo uso do comando SELECT * FROM validam a integridade para o recebimento de novos dados posteriormente.***</sub>
+<sub>***Cada entidade foi codificada pelo comando CREATE, gerando uma tabela que recebe seus campos e respectivos tipos (ex. 'Area VARCHAR(255)'). Ao final do código, registraram-se as informações pelo comando INSERT INTO para cada uma das entidades. As amostras dos dados no terminal da plataforma pelo uso do comando SELECT * FROM validam a integridade para o recebimento de novos dados posteriormente.***</sub>
 
 
 ###########################################################################################################
