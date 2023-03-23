@@ -35,7 +35,9 @@ Essa etapa foi amplamente discutida e ilustrada com as imagens dos modelos traba
 Na codificação dos modelos anteriores, foram concebidos de forma fictícia dois ou mais registros para cada entidade existente afim de se checar o preenchimento das informações. Essa etapa do projeto foi trabalhada no SQL Online IDE (https://sqliteonline.com/)  por PostgreSQL, conforme mostrado abaixo:
 
 ```sql
-CREATE TABLE CADASTRO_EMPRESA (
+--criação das tabelas para cada entidade--
+--entidade1--
+CREATE TABLE CADASTRO_EMPRESA(
   CNPJ INTEGER PRIMARY KEY,
   Nome VARCHAR(255),
   Telefone INTEGER,
@@ -43,7 +45,7 @@ CREATE TABLE CADASTRO_EMPRESA (
   ID_Cad_Tec INTEGER,
   FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_EMPRESA(CNPJ)
 );
- 
+--entidade2--
 CREATE TABLE CADASTRO_TECNOLOGIA(
   ID_Cad_Tec INTEGER primary KEY,
   Nome VARCHAR(255),
@@ -51,7 +53,7 @@ CREATE TABLE CADASTRO_TECNOLOGIA(
   CNPJ INTEGER,
   FOREIGN Key (CNPJ) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
 );
- 
+--entidade3 (relacionamento promovido)--
 CREATE TABLE CADASTRO_EMP_TEC(
   CNPJ INTEGER,
   ID_Cad_Tec INTEGER,
@@ -59,7 +61,7 @@ CREATE TABLE CADASTRO_EMP_TEC(
   CONSTRAINT fk_CNPJ FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ),
   CONSTRAINT fk_ID_Cad_Tec FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
 );
-
+--entidade4 (entidade do aprimoramento)--
 CREATE TABLE CURSOS(
   ID_Curso INTEGER PRIMARY KEY,
   Nome VARCHAR(255),
@@ -70,9 +72,40 @@ CREATE TABLE CURSOS(
   CNPJ INTEGER,
   FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ) 
 );
+--finalização das tabelas para cada entidade--
+--início dos registros e testes de preenchimento de dados--
+--registros da entidade 1--
+INSERT INTO cadastro_empresa VALUES
+(12345670,'XP Investimentos',33344444,'Rua Fofolete da Silva 220'),
+(98372932,'Nubank',33212188,'Avenida Senador Ximbinha 1892'),
+(12345678,'Itaú',33388399,'Rua Sujeito Suspeito 337');
+SELECT * FROM cadastro_empresa;
+
+--registros da entidade 2--
+INSERT INTO cadastro_tecnologia VALUES
+(00030,'JavaScript','Web Development'),
+(393878,'Unix','Game Development'),
+(000300,'SQL','Data Analytics');
+SELECT * FROM cadastro_tecnologia;
+
+
+--registros da entidade 3--
+INSERT INTO cadastro_emp_tec VALUES
+(12345670,00030),
+(98372932,393878),
+(12345678,000300);
+SELECT * FROM cadastro_emp_tec;
+
+--registros da entidade 4--
+INSERT INTO cursos VALUES
+(993848,'Infraestrutura de Redes',430,'Edgard Simas','Tarde','back-end'),
+(228293,'Desenvolvimento Web Mobile',500,'Daniel Sanches','Manhã','full-stack'),
+(1279182,'Cloud Computing',540,'Bruno Veritas','Manhã','servers');
+SELECT * FROM cursos
+--finalização dos registros e testes de preenchimento de dados--
 ```
 
-<sub>***Nota: supõe-se nesse modelo do projeto que todas as notas trabalhadas serão números inteiros. É possível trabalhar com números decimais, se for necessário; basta colocar 'float(input())' em substituição.***</sub>
+<sub>***Cada entidade foi codificada pelo comando CREATE, gerando uma tabela que recebe seus campos e respectivos tipos (ex. 'Area VARCHAR(255)'). Ao final do código, registraram-se as informações pelo comando INSERT INTO para cada um das entidades. As amostras dos dados no terminal da plataforma pelo uso do comando SELECT * FROM validam a integridade para o recebimento de novos dados posteriormente.***</sub>
 
 
 ###########################################################################################################
