@@ -45,6 +45,7 @@ CREATE TABLE CADASTRO_EMPRESA(
   ID_Cad_Tec INTEGER,
   FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_EMPRESA(CNPJ)
 );
+
 --entidade2--
 CREATE TABLE CADASTRO_TECNOLOGIA(
   ID_Cad_Tec INTEGER primary KEY,
@@ -53,6 +54,7 @@ CREATE TABLE CADASTRO_TECNOLOGIA(
   CNPJ INTEGER,
   FOREIGN Key (CNPJ) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
 );
+
 --entidade3 (relacionamento promovido)--
 CREATE TABLE CADASTRO_EMP_TEC(
   CNPJ INTEGER,
@@ -61,6 +63,7 @@ CREATE TABLE CADASTRO_EMP_TEC(
   CONSTRAINT fk_CNPJ FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ),
   CONSTRAINT fk_ID_Cad_Tec FOREIGN KEY (ID_Cad_Tec) REFERENCES CADASTRO_TECNOLOGIA(ID_Cad_Tec)
 );
+
 --entidade4 (entidade do aprimoramento)--
 CREATE TABLE CURSOS(
   ID_Curso INTEGER PRIMARY KEY,
@@ -73,6 +76,7 @@ CREATE TABLE CURSOS(
   FOREIGN KEY (CNPJ) REFERENCES CADASTRO_EMPRESA(CNPJ) 
 );
 --finalização das tabelas para cada entidade--
+
 --início dos registros e testes de preenchimento de dados--
 --registros da entidade 1--
 INSERT INTO cadastro_empresa VALUES
@@ -87,7 +91,6 @@ INSERT INTO cadastro_tecnologia VALUES
 (393878,'Unix','Game Development'),
 (000300,'SQL','Data Analytics');
 SELECT * FROM cadastro_tecnologia;
-
 
 --registros da entidade 3--
 INSERT INTO cadastro_emp_tec VALUES
