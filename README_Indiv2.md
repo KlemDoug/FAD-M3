@@ -13,7 +13,7 @@ Além disso, o BANCORESILIA recebe uma carga de forma fictícia com informaçõe
 ## Arquivos ##
 
 * **BancoResiliaBD.sql**: arquivo contendo os comandos para criação do banco de dados;
-* **BancoResiliaCargas.sql**: arquivo contendo os comandos utilizados para dar carga (registrar), com dados fictícios, o banco de dados;
+* **BancoResiliaCargas.sql**: arquivo contendo os comandos utilizados para dar carga (registrar), com dados fictícios, no banco de dados;
 * **BancoResiliaConsultas.sql**: arquivo contendo os comandos de query (consultas) SQL que respondem a cada uma das perguntas feitas no projeto.
 * **README_Indiv2.md**: arquivo que abriga uma breve descrição do projeto com o título, suas funcionalidades, arquivos presentes na pasta do projeto e seus respectivos comandos.
 
